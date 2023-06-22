@@ -7,8 +7,8 @@ on:
 
 jobs:
   build-and-deploy:
-    g: centos-latest
-
+    g: ubuntu-latest
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
