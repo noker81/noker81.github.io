@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    g: ubuntu-latest
+    g: centos-latest
 
     steps:
     - name: Checkout repository
