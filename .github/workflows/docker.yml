@@ -26,9 +26,15 @@ jobs:
         push: true
         tags: noker81/noker81.github.io:latest
 
-    - name: Deploy to Docker
-      uses: docker/deploy-action@v1
+    - name: Deploy to remote server
+      uses: appleboy/ssh-action@master
       with:
-        name: noker81/noker81.github.io
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        host: your-remote-server
+        username: your-ssh-username
+        password: ${{ secrets.SSH_PASSWORD }}
+        port: 22
+        script: |
+          docker pull noker81/noker81.github.io:latest
+          docker stop your-container-name || true
+          docker rm your-container-name || true
+          docker run -d --name your-container-name -p 80:80 noker81/noker81.github.io:latest
